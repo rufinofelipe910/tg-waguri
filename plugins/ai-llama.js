@@ -29,7 +29,7 @@ export default {
       const data = await res.json();
       const responseText = data.result || data.response || data.resultado || data.message;
 
-      if (!responseText) throw new Error("La plataforma no devolvió una respuesta válida.");
+      if (!responseText) throw new Error("Llama no devolvió una respuesta válida.");
 
       global.llamaMemory[userId].push(`Usuario: ${text}`);
       global.llamaMemory[userId].push(`Asistente: ${responseText}`);
