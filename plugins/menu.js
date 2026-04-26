@@ -10,7 +10,8 @@ let tags = {
   main: 'ACERCA DE',
   ai: 'AI',
   search: 'Busqueda',
-  dl: 'DESCARGAS'
+  dl: 'DESCARGAS',
+  tools: 'Utilidades'
 }
 
 let plugins = Object.values(global.plugins)
