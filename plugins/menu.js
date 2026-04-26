@@ -8,7 +8,9 @@ run: async (ctx, { conn, usedPrefix }) => {
 
 let tags = {
   main: 'ACERCA DE',
-  dl: 'DESCARGAS'
+  dl: 'DESCARGAS',
+  ai: 'AI',
+  search: 'Busqueda'
 }
 
 let plugins = Object.values(global.plugins)
