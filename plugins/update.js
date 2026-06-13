@@ -8,10 +8,6 @@ export default {
   run: async (ctx) => {
     const messageId = ctx.message?.message_id
 
-    if (ctx.chat.type !== "private" && !ctx.from.is_admin) {
-      return ctx.reply("❌ Solo el administrador puede actualizar.", { reply_to_message_id: messageId })
-    }
-
     try {
       await ctx.reply("⚙️ Iniciando actualización...", { reply_to_message_id: messageId })
 
