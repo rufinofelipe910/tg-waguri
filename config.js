@@ -7,9 +7,11 @@ global.BOT_TOKEN = process.env.BOT_TOKEN || "AQUI-TOKEN-BOT"
 
 global.PREFIX = "/"
 
-
 global.owner = ["@fg_log"] //-usuario
 global.ownerID = ["8356741852"]
+
+global.api = "https://nexevo-m2zx.onrender.com"
+global.apikey = ""
 
 //--info FG
 global.botName = 'Senna'
