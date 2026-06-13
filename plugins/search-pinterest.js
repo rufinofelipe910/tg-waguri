@@ -15,7 +15,7 @@ export default {
     await ctx.sendChatAction('upload_photo');
 
     try {
-      const res = await fetch(`https://nexevo-m2zx.onrender.com/search/pinterest?q=${encodeURIComponent(text)}`);
+      const res = await fetch(`${api}/search/pinterest?q=${encodeURIComponent(text)}`);
       const data = await res.json();
 
       if (!data.status || !data.result.length) {
