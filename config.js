@@ -1,6 +1,9 @@
 import fs from "fs"
+import dotenv from "dotenv"
 
-global.BOT_TOKEN = "AQUI-TOKEN-BOT" 
+dotenv.config() 
+
+global.BOT_TOKEN = process.env.BOT_TOKEN || "AQUI-TOKEN-BOT"
 
 global.PREFIX = "/"
 
