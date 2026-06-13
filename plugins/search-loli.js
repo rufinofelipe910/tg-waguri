@@ -7,7 +7,7 @@ export default {
     const messageId = ctx.message?.message_id
 
     try {
-      const url = "${global.api}/random/loli"
+      const url = `${global.api}/random/loli`
 
       await ctx.replyWithPhoto(url, {
         caption: "✨ Aquí tienes.",
