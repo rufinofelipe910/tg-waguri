@@ -7,7 +7,7 @@ export default {
     const messageId = ctx.message?.message_id
 
     try {
-      const url = "https://nexevo-m2zx.onrender.com/random/loli"
+      const url = "${api}/random/loli"
 
       await ctx.replyWithPhoto(url, {
         caption: "✨ Aquí tienes.",
