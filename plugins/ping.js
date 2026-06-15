@@ -1,33 +1,28 @@
 export default {
+  help: ["ping"],
+  tags: ["main"],
+  command: ["ping"],
 
-help: ["ping"],
-tags: ["main"],
-command: ["ping"],
+  run: async (conn, ctx) => {
+    const messageId = ctx.message?.message_id
+    const start = performance.now()
 
-run: async (conn) => {
+    let m = await conn.reply("🏓 Midiendo velocidad...", { reply_to_message_id: messageId })
 
-let start = performance.now()
+    const end = performance.now()
+    const speed = (end - start).toFixed(2)
+    const ram = (process.memoryUsage().rss / 1024 / 1024).toFixed(0)
 
-let m = await conn.reply("🏓 Midiendo velocidad...")
-
-let end = performance.now()
-
-let speed = (end - start).toFixed(2)
-
-let ram = (process.memoryUsage().rss / 1024 / 1024).toFixed(0)
-
-await conn.editMessageText(
-`🏓 PONG
+    await conn.editMessageText(
+      `🏓 PONG
 
 ⚡ Ping: ${speed} ms
 🧠 RAM: ${ram} MB
 ⏱️ Uptime: ${Math.floor(process.uptime())}s`,
-{
-chat_id: m.chat.id,
-message_id: m.message_id
-}
-)
-
-}
-
+      {
+        chat_id: m.chat.id,
+        message_id: m.message_id
+      }
+    )
+  }
 }
