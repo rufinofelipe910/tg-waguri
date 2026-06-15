@@ -20,7 +20,7 @@ export default {
 🧠 RAM: ${ram} MB
 ⏱️ Uptime: ${Math.floor(process.uptime())}s`,
       {
-        chat_id: m.chat.id,
+        chat_id: ctx.chat?.id,
         message_id: m.message_id
       }
     )
