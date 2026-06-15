@@ -7,6 +7,11 @@ export default {
 
   run: async (ctx) => {
     const messageId = ctx.message?.message_id
+    const senderId = String(ctx.from?.id)
+
+    if (!global.ownerID.includes(senderId)) {
+      return ctx.reply("⛔ No tienes permisos para usar este comando.", { reply_to_message_id: messageId })
+    }
 
     try {
       await ctx.reply("⚙️ Iniciando actualización...", { reply_to_message_id: messageId })
@@ -14,7 +19,7 @@ export default {
       exec("git pull && npm install", (error, stdout, stderr) => {
         if (error) {
           console.error(error)
-          return ctx.reply("❌ Error al actualizar: revisa permisos o configuración.", { reply_to_message_id: messageId })
+          return ctx.reply("❌ Error al actualizar.", { reply_to_message_id: messageId })
         }
 
         if (stderr) console.error(stderr)
