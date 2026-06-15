@@ -11,6 +11,8 @@ let tags = {
   ai: 'AI',
   search: 'Busqueda',
   dl: 'DESCARGAS',
+  group: 'Admins',
+  owner: 'Owner',
   tools: 'Utilidades'
 }
 
