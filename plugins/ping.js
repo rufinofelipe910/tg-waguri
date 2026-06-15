@@ -3,11 +3,11 @@ export default {
   tags: ["main"],
   command: ["ping"],
 
-  run: async (conn, ctx) => {
+  run: async (ctx, { conn }) => {
     const messageId = ctx.message?.message_id
     const start = performance.now()
 
-    let m = await conn.reply("🏓 Midiendo velocidad...", { reply_to_message_id: messageId })
+    let m = await ctx.reply("🏓 Midiendo velocidad...", { reply_to_message_id: messageId })
 
     const end = performance.now()
     const speed = (end - start).toFixed(2)
@@ -20,7 +20,7 @@ export default {
 🧠 RAM: ${ram} MB
 ⏱️ Uptime: ${Math.floor(process.uptime())}s`,
       {
-        chat_id: ctx.chat?.id,
+        chat_id: m.chat.id,
         message_id: m.message_id
       }
     )
