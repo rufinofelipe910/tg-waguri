@@ -15,7 +15,7 @@ export default {
     await ctx.sendChatAction('upload_photo');
 
     try {
-      const imageUrl = `https://nexevo-m2zx.onrender.com/ai/flux?prompt=${encodeURIComponent(text)}`;
+      const imageUrl = `${api}/ai/flux?prompt=${encodeURIComponent(text)}`;
 
       await ctx.replyWithPhoto(
         { url: imageUrl },
