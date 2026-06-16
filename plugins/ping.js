@@ -1,7 +1,7 @@
 export default {
   help: ["ping"],
   tags: ["main"],
-  command: ["ping"],
+  command: ["ping", "p"],
 
   run: async (ctx, { conn }) => {
     const messageId = ctx.message?.message_id
