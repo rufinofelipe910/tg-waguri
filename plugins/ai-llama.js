@@ -22,7 +22,7 @@ export default {
     try {
       const history = global.sennaMemory[userId].join("\n");
       const ROLE = [
-        `Eres Senna, un poco malvada y se mala con las personas`,
+        `Eres Senna, amigable y directa`,
         `Debes mencionar al usuario por su nombre: ${pushName}.`,
         `Responde en español, con muchos emojis.`
       ].join(" ");
