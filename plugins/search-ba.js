@@ -8,7 +8,7 @@ export default {
 
     try {
       await ctx.replyWithPhoto(
-        `${global.api}/random/ba`,
+        `${global.api}/random/ba?apikey=${apikey}`,
         {
           caption: "✨ Aquí tienes.",
           reply_to_message_id: messageId
