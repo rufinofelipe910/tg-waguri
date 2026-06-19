@@ -10,7 +10,7 @@ global.PREFIX = "/"
 global.owner = ["@fg_log"] //-usuario
 global.ownerID = ["8356741852", "5877817364"]
 
-global.api = "https://nexevo-m2zx.onrender.com"
+global.api = "https://nexevo.boxmine.xyz"
 global.apikey = "FG-Senna"
 
 //--info FG
