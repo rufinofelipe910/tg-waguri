@@ -1,3 +1,4 @@
+
 export default {
   help: ["pinterest", "pin"],
   tags: ["search"],
@@ -12,13 +13,17 @@ export default {
       });
     }
 
-    await ctx.sendChatAction('upload_photo');
+    await ctx.sendChatAction("upload_photo");
 
     try {
-      const res = await fetch(`${api}/search/pinterest?q=${encodeURIComponent(text)}`);
+      const url = `${api}/search/pinterest?q=${encodeURIComponent(text)}&apikey=${apikey}`;
+      const res = await fetch(url);
+
+      if (!res.ok) throw new Error(`Estado de respuesta: ${res.status}`);
+
       const data = await res.json();
 
-      if (!data.status || !data.result.length) {
+      if (!data.status || !data.result?.length) {
         throw new Error("Sin resultados.");
       }
 
@@ -27,7 +32,7 @@ export default {
       await ctx.replyWithPhoto(
         { url: item.image_large_url },
         {
-          caption: `Resultado: ${item.titulo || 'Sin título'}`,
+          caption: `Resultado: ${item.titulo || "Sin título"}`,
           reply_to_message_id: messageId
         }
       );
