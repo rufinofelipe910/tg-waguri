@@ -11,7 +11,7 @@ global.owner = ["@fg_log"] //-usuario
 global.ownerID = ["8356741852", "5877817364"]
 
 global.api = "https://nexevo-m2zx.onrender.com"
-global.apikey = ""
+global.apikey = "FG-Senna"
 
 //--info FG
 global.botName = 'Senna'
