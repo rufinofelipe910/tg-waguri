@@ -6,6 +6,7 @@ export default {
   run: async (ctx, { text }) => {
     const messageId = ctx.message?.message_id || ctx.callbackQuery?.message?.message_id;
     const userId = ctx.from.id;
+    const pushName = ctx.from.first_name || ctx.from.username || "Usuario";
 
     if (!global.sennaMemory) global.sennaMemory = {};
     if (!global.sennaMemory[userId]) global.sennaMemory[userId] = [];
@@ -20,7 +21,13 @@ export default {
 
     try {
       const history = global.sennaMemory[userId].join("\n");
-      const prompt = `${history}\nUsuario: ${text}\nAsistente:`;
+      const ROLE = [
+        `Eres Senna, un poco malvada y se mala con las personas`,
+        `Debes mencionar al usuario por su nombre: ${pushName}.`,
+        `Responde en español, con muchos emojis.`
+      ].join(" ");
+
+      const prompt = `${ROLE}\n${history}\nUsuario (${pushName}): ${text}\nAsistente:`;
 
       const url = `${api}/ai/gemini?text=${encodeURIComponent(prompt)}&apikey=${apikey}`;
       const res = await fetch(url);
@@ -32,7 +39,7 @@ export default {
 
       if (!responseText) throw new Error("Gemini no devolvió una respuesta válida.");
 
-      global.sennaMemory[userId].push(`Usuario: ${text}`);
+      global.sennaMemory[userId].push(`Usuario (${pushName}): ${text}`);
       global.sennaMemory[userId].push(`Asistente: ${responseText}`);
 
       if (global.sennaMemory[userId].length > 10) {
