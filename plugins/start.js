@@ -10,7 +10,7 @@ export default {
       {
         caption: `
 ┌─⊷ Bienvenido ${pushName}
-▢ ${usedPrefix}help » Ver menú del bot
+▢ Usa ${usedPrefix}help » Ver menú del bot
 ▢ Owner » ${global.owner}
 ▢ Estado » Fase de prueba
 └───────────
