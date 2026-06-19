@@ -19,7 +19,8 @@ export default {
           inline_keyboard: [
             [{ text: "📢 Seguir Canal", url: "https://t.me/fg_canal" }]
           ]
-        }
+        },
+        reply_to_message_id: ctx.message?.message_id
       }
     );
   }
