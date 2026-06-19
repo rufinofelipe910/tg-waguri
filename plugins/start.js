@@ -2,7 +2,7 @@ export default {
   command: ["start"],
 
   run: async (ctx, { conn, usedPrefix }) => {
-    const pushName = ctx.from.first_name || ctx.from.username || "Usuario";
+    const pushName = ctx.from?.first_name || ctx.from?.username || "Usuario";
     let pp = './src/fg_logo.jpg';
 
     await conn.sendMessage(ctx.chat, {
@@ -21,6 +21,6 @@ export default {
           ]
         ]
       }
-    }, { quoted: ctx });
+    });
   }
 }
