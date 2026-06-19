@@ -1,14 +1,14 @@
 export default {
-  help: ["llama"],
+  help: ["ia"],
   tags: ["ai"],
-  command: ["llama", "ia"],
+  command: ["senna", "ia"],
 
   run: async (ctx, { text }) => {
     const messageId = ctx.message?.message_id || ctx.callbackQuery?.message?.message_id;
     const userId = ctx.from.id;
 
-    if (!global.llamaMemory) global.llamaMemory = {};
-    if (!global.llamaMemory[userId]) global.llamaMemory[userId] = [];
+    if (!global.sennaMemory) global.sennaMemory = {};
+    if (!global.sennaMemory[userId]) global.sennaMemory[userId] = [];
 
     if (!text) {
       return ctx.reply("Por favor, proporcione el texto o la consulta que desea procesar.", {
@@ -16,26 +16,27 @@ export default {
       });
     }
 
-    await ctx.sendChatAction('typing');
+    await ctx.sendChatAction("typing");
 
     try {
-      const history = global.llamaMemory[userId].join("\n");
+      const history = global.sennaMemory[userId].join("\n");
       const prompt = `${history}\nUsuario: ${text}\nAsistente:`;
 
-      const res = await fetch(`https://nexevo-m2zx.onrender.com/ai/llama?text=${encodeURIComponent(prompt)}`);
-      
+      const url = `${api}/ai/gemini?text=${encodeURIComponent(prompt)}&apikey=${apikey}`;
+      const res = await fetch(url);
+
       if (!res.ok) throw new Error(`Estado de respuesta: ${res.status}`);
-      
+
       const data = await res.json();
       const responseText = data.result || data.response || data.resultado || data.message;
 
-      if (!responseText) throw new Error("Llama no devolvió una respuesta válida.");
+      if (!responseText) throw new Error("Gemini no devolvió una respuesta válida.");
 
-      global.llamaMemory[userId].push(`Usuario: ${text}`);
-      global.llamaMemory[userId].push(`Asistente: ${responseText}`);
+      global.sennaMemory[userId].push(`Usuario: ${text}`);
+      global.sennaMemory[userId].push(`Asistente: ${responseText}`);
 
-      if (global.llamaMemory[userId].length > 10) {
-        global.llamaMemory[userId] = global.llamaMemory[userId].slice(-10);
+      if (global.sennaMemory[userId].length > 10) {
+        global.sennaMemory[userId] = global.sennaMemory[userId].slice(-10);
       }
 
       await ctx.reply(responseText, {
