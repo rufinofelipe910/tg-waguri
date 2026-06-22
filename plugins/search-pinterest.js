@@ -1,4 +1,3 @@
-
 export default {
   help: ["pinterest", "pin"],
   tags: ["search"],
@@ -27,15 +26,18 @@ export default {
         throw new Error("Sin resultados.");
       }
 
-      const item = data.result[Math.floor(Math.random() * data.result.length)];
+      
+      const items = data.result.slice(0, 10);
 
-      await ctx.replyWithPhoto(
-        { url: item.image_large_url },
-        {
-          caption: `Resultado: ${item.titulo || "Sin título"}`,
-          reply_to_message_id: messageId
-        }
-      );
+      const mediaGroup = items.map(item => ({
+        type: "photo",
+        media: item.image_large_url,
+        caption: item.titulo || "Sin título"
+      }));
+
+      await ctx.replyWithMediaGroup(mediaGroup, {
+        reply_to_message_id: messageId
+      });
 
     } catch (e) {
       console.error(e);
