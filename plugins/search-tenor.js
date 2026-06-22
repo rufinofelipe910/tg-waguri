@@ -26,17 +26,15 @@ export default {
         throw new Error("Sin resultados.");
       }
 
-      const items = data.result.results.slice(0, 10);
+      const item = data.result.results[Math.floor(Math.random() * data.result.results.length)];
 
-      const mediaGroup = items.map(item => ({
-        type: "document", 
-        media: item.url,
-        caption: `${item.title}\n👤 Autor: ${item.author}`
-      }));
-
-      await ctx.replyWithMediaGroup(mediaGroup, {
-        reply_to_message_id: messageId
-      });
+      await ctx.replyWithAnimation(
+        { url: item.url },
+        {
+          caption: `${item.title}\n👤 Autor: ${item.author}\n🔗 [Ver en Tenor](${item.page})`,
+          reply_to_message_id: messageId
+        }
+      );
 
     } catch (e) {
       console.error(e);
