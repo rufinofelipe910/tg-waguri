@@ -1,4 +1,5 @@
-import hispamemes from "hispamemes";
+import pkg from "hispamemes";
+const { meme } = pkg;
 
 export default {
   help: ["meme", "memes"],
@@ -11,8 +12,7 @@ export default {
     await ctx.sendChatAction("upload_photo");
 
     try {
-      const meme = await hispamemes();
-      const memeUrl = meme?.url || meme;
+      const memeUrl = meme();
 
       if (!memeUrl) throw new Error("No se pudo obtener el meme.");
 
