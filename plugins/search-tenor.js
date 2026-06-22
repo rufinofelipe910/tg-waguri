@@ -31,7 +31,7 @@ export default {
       await ctx.replyWithAnimation(
         { url: item.url },
         {
-          caption: `${item.title}\n👤 Autor: ${item.author}\n🔗 [Ver en Tenor](${item.page})`,
+          
           reply_to_message_id: messageId
         }
       );
