@@ -31,7 +31,6 @@ export default {
       await ctx.replyWithAnimation(
         { url: item.url },
         {
-          
           reply_to_message_id: messageId
         }
       );
