@@ -3,7 +3,7 @@ const { meme } = pkg;
 
 export default {
   help: ["meme", "memes"],
-  tags: ["fun"],
+  tags: ["tools"],
   command: ["meme", "memes"],
 
   run: async (ctx) => {
