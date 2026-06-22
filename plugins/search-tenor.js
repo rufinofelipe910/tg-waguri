@@ -29,7 +29,7 @@ export default {
       const items = data.result.results.slice(0, 10);
 
       const mediaGroup = items.map(item => ({
-        type: "animation", 
+        type: "document", 
         media: item.url,
         caption: `${item.title}\n👤 Autor: ${item.author}`
       }));
