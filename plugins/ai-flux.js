@@ -15,7 +15,7 @@ export default {
     await ctx.sendChatAction('upload_photo');
 
     try {
-      const imageUrl = `${api}/ai/flux?prompt=${encodeURIComponent(text)}`;
+      const imageUrl = `${api}/ai/flux?prompt=${encodeURIComponent(text)}&apikey=${apikey}`;
 
       await ctx.replyWithPhoto(
         { url: imageUrl },
