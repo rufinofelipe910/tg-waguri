@@ -3,7 +3,7 @@ import { exec } from "child_process"
 export default {
   help: ["update"],
   tags: ["owner"],
-  command: ["update", "up"],
+  command: ["update", "up", "fix"],
 
   run: async (ctx) => {
     const messageId = ctx.message?.message_id
