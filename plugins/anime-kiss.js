@@ -16,7 +16,7 @@ export default {
     ]
 
     const gif = gifs[Math.floor(Math.random() * gifs.length)]
-    const caption = `${user} besa a ${target}`
+    const caption = `${user} besa a ${target}  ꒰ঌ(˶ˆᗜˆ˵)໒꒱`
 
     try {
       await ctx.telegram.sendAnimation(ctx.chat.id, gif, {
