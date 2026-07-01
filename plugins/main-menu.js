@@ -9,6 +9,7 @@ run: async (ctx, { conn, usedPrefix }) => {
 let tags = {
   main: 'ACERCA DE',
   ai: 'AI',
+  anime: 'ANIME',
   search: 'BUSQUEDA',
   dl: 'DESCARGAS',
   group: 'GRUPO',
