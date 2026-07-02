@@ -3,22 +3,21 @@ import dotenv from "dotenv"
 
 dotenv.config() 
 
-global.BOT_TOKEN = process.env.BOT_TOKEN || "AQUI-TOKEN-BOT"
+global.BOT_TOKEN = process.env.BOT_TOKEN || "8935619495:AAG1vjwLrLNAp8rovt1CzVGkc9Ymcy2J15M"
 
 global.PREFIX = "/"
 
-global.owner = ["@fg_log"] //-usuario
-global.ownerID = ["8356741852", "5877817364"]
+global.owner = ["@Rey_Rufino"] //-usuario
+global.ownerID = ["7853070357"]
 
 global.api = "https://nexevo.boxmine.xyz"
 global.apikey = "FG-Senna"
 
 //--info FG
-global.botName = 'Senna'
-global.fg_ig = 'https://instagram.com/fg.error' 
+global.botName = 'waguri'
+global.fg_ig = 'https://www.instagram.com/reyrufino873?igsh=MTI2aWlxaGVsNzB1bQ==' 
 global.fg_sc = 'https://github.com/FG98F/dylux-bot' 
-global.fg_pyp = 'https://paypal.me/fg98f'
-global.fg_logo = 'https://i.ibb.co/1zdz2j3/logo.jpg' 
+global.fg_logo = 'https://cdn.dev-ander.xyz/a/SV0S.jpg' 
 
 //--- Grupos WA
 global.fg_canal = '@fg_canal'
