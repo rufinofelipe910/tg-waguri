@@ -20,8 +20,8 @@ global.fg_sc = 'https://github.com/FG98F/dylux-bot'
 global.fg_logo = 'https://cdn.dev-ander.xyz/a/SV0S.jpg' 
 
 //--- Grupos WA
-global.fg_canal = '@fg_canal'
-global.fg_group = "@fg_userss"
+global.canal = 'https://t.me/waguribot_channel'
+global.group = "https://t.me/waguri_group"
 
 
 console.log("⚙️ Config cargada")
