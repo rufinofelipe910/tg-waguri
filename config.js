@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 
 dotenv.config() 
 
-global.BOT_TOKEN = process.env.BOT_TOKEN || "8935619495:AAG1vjwLrLNAp8rovt1CzVGkc9Ymcy2J15M"
+global.BOT_TOKEN = process.env.BOT_TOKEN || "8935619495"
 
 global.PREFIX = "/"
 
