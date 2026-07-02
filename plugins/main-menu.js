@@ -1,45 +1,41 @@
+// main-menu.js - Waguri Bot (Telegram)
+// Estilo visual inspirado en el menú Waguri
+
 export default {
+  help: ["menu"],
+  tags: ["main"],
+  command: ["menu", "help", "menú", "waguri", "menucompleto", "comandos", "allmenu"],
 
-help: ["help"],
-tags: ["main"], 
-command: ["menu","help","menú"],
+  run: async (ctx, { conn, usedPrefix }) => {
+    let plugins = Object.values(global.plugins)
+    let categorias = {}
 
-run: async (ctx, { conn, usedPrefix }) => {
+    for (let plugin of plugins) {
+      if (!plugin.help || !plugin.tags) continue
+      for (let tag of plugin.tags) {
+        if (!categorias[tag]) categorias[tag] = []
+        for (let help of plugin.help) {
+          categorias[tag].push(help)
+        }
+      }
+    }
 
-let tags = {
-  main: 'ACERCA DE',
-  ai: 'AI',
-  anime: 'ANIME',
-  search: 'BUSQUEDA',
-  dl: 'DESCARGAS',
-  group: 'GRUPO',
-  owner: 'OWNER',
-  tools: 'UTILIDADES'
-}
+    let tags = {
+      main: 'HERRAMIENTAS',
+      ai: 'INTELIGENCIA ARTIFICIAL',
+      anime: 'ANIME',
+      search: 'STALK',
+      dl: 'DESCARGAS',
+      group: 'GRUPO',
+      owner: 'OWNER',
+      tools: 'UTILIDADES'
+    }
 
-let plugins = Object.values(global.plugins)
-
-let categorias = {}
-
-for (let plugin of plugins) {
-
-if (!plugin.help || !plugin.tags) continue
-
-for (let tag of plugin.tags) {
-
-if (!categorias[tag]) categorias[tag] = []
-
-for (let help of plugin.help) {
-categorias[tag].push(help)
-}
-
-}
-
-}
-
-let text = `
-◈ ━━━━━ SENNA ━━━━━ ◈
-
+    let text = `
+✿°•  𝗪𝗔𝗚𝗨𝗥𝗜 𝗕𝗢𝗧  •°✿
+⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑
+🌸 ¡Hola @${ctx.from.username || ctx.from.first_name || 'Usuario'}! ⸜(｡˃ᵕ˂)⸝♡
+⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑
 ⚙️ Plugins: ${plugins.length}
 
 Grupo: ${global.fg_group}
@@ -48,28 +44,27 @@ Canal: ${global.fg_canal}
 ≡ LISTA DE MENUS
 `
 
-for (let tag in tags) {
+    for (let tag in tags) {
+      if (!categorias[tag]) continue
 
-if (!categorias[tag]) continue
+      text += `\n💖 *${tags[tag]}*\n`
 
-text += `\n┌─⊷ ${tags[tag]} \n`
+      for (let cmd of categorias[tag]) {
+        text += `🌈 ${usedPrefix}${cmd}\n`
+      }
+    }
 
-for (let cmd of categorias[tag]) {
-text += `▢ ${usedPrefix}${cmd}\n`
-}
+    text += `\n⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
-text += `└───────────\n`
-
-}
-
-//---
-let pp = './src/fg_logo.jpg'
-await conn.replyWithPhoto(
-{ source: pp },
-{ caption: text }
-)
-//conn.reply(text)
-
-}
-
+    // Enviar como foto con caption (Telegraf)
+    let pp = './src/fg_logo.jpg'
+    try {
+      await ctx.replyWithPhoto(
+        { source: pp },
+        { caption: text, parse_mode: 'Markdown' }
+      )
+    } catch (e) {
+      await ctx.reply(text, { parse_mode: 'Markdown' })
+    }
+  }
 }
