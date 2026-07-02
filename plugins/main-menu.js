@@ -38,8 +38,8 @@ export default {
 ⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑
 ⚙️ Plugins: ${plugins.length}
 
-Grupo: ${global.fg_group}
-Canal: ${global.fg_canal}
+Grupo: ${global.group}
+Canal: ${global.canal}
 
 ≡ LISTA DE MENUS
 `
@@ -57,7 +57,7 @@ Canal: ${global.fg_canal}
     text += `\n⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
     // Enviar como foto con caption (Telegraf)
-    let pp = './src/fg_logo.jpg'
+    let pp = './src/f (6).jpg'
     try {
       await ctx.replyWithPhoto(
         { source: pp },
