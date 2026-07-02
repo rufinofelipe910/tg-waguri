@@ -57,7 +57,7 @@ Canal: ${global.canal}
     text += `\n⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
     // Enviar como foto con caption (Telegraf)
-    let pp = './src/f (6).jpg'
+    let pp = './src/foto.jpg'
     try {
       await ctx.replyWithPhoto(
         { source: pp },
