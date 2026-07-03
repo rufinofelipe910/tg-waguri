@@ -202,6 +202,7 @@ if (!text) return
 runPlugins(ctx, text)
 
 })
+
 /* ========= BUTTON EVENT ========= */
 
 bot.on("callback_query", async (ctx) => {
@@ -212,7 +213,31 @@ console.log("🔘 BOTÓN PRESIONADO →", data)
 
 await ctx.answerCbQuery()
 
-runPlugins(ctx, data)
+// Ejecutar plugins que manejen este callback
+for (let name in global.plugins) {
+
+let plugin = global.plugins[name]
+
+if (!plugin || !plugin.run) continue
+
+// Si el plugin tiene este callback en su command array
+if (plugin.command && plugin.command.includes(data)) {
+  try {
+    await plugin.run(ctx, {
+      conn: ctx,
+      args: [],
+      command: data,
+      text: "",
+      usedPrefix: global.PREFIX
+    })
+  } catch (e) {
+    console.log(chalk.red("❌ Error en callback:"), name)
+    console.log(e)
+  }
+  return
+}
+
+}
 
 })
 
