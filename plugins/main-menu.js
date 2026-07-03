@@ -129,9 +129,10 @@ export default {
 ⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
       await conn.replyWithPhoto(
-        { source: fs.createReadStream('./src/foto.jpg') },
-        { caption: text }
+        { source: fs.createReadStream('./src/foto.jpg') }
       )
+
+      await ctx.reply(text)
 
     } catch (e) {
       console.error('Error en menu:', e)
