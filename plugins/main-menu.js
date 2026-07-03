@@ -126,15 +126,12 @@ export default {
 🌈 ${usedPrefix}withdraw
 ⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
-      try {
-        let pp = './src/foto.jpg'
-        await conn.replyWithPhoto(
-          { source: pp },
-          { caption: text }
-        )
-      } catch (photoErr) {
-        await ctx.reply(text)
-      }
+      let menuImage = 'https://cdn.dev-ander.xyz/a/SV0S.jpg'
+
+      await conn.replyWithPhoto(
+        { url: menuImage },
+        { caption: text }
+      )
 
     } catch (e) {
       console.error('Error en menu:', e)
