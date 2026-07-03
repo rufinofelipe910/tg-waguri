@@ -4,7 +4,7 @@ export default {
   tags: ["main"],
   command: ["menu", "waguri", "help", "menucompleto", "comandos", "helpcompleto", "allmenu"],
 
-  run: async (ctx, { conn, usedPrefix }) => {
+  run: async (ctx, { conn }) => {
 
     let totalreg  = Object.keys(global.db?.data?.users || {}).length
     let totalCmds = 58
