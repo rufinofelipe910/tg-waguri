@@ -5,133 +5,53 @@ export default {
   command: ["menu", "waguri", "help", "menucompleto", "comandos", "helpcompleto", "allmenu"],
 
   run: async (ctx, { conn }) => {
+    try {
+      let username = ctx.from?.username || ctx.from?.first_name || "Usuario"
+      let hora = new Date().getHours()
+      let saludo = hora >= 6 && hora < 12 ? "Buen día" : hora >= 12 && hora < 18 ? "Buenas tardes" : "Buenas noches"
 
-    let totalreg  = Object.keys(global.db?.data?.users || {}).length
-    let totalCmds = 58
-    const uptime  = clockString(process.uptime() * 1000)
+      let caption = `✨ MENÚ PRINCIPAL\n\n🌅 ${saludo} ${username} 👑\n\nSelecciona una categoría.`
 
-    let text = `
-✿°•  𝗪𝗔𝗚𝗨𝗥𝗜 𝗕𝗢𝗧  •°✿
-⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑
-🌸 ¡Hola @${ctx.from.username || ctx.from.first_name}! ⸜(｡˃ᵕ˂)⸝♡
-⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑
-⏱️ *Uptime* » ${uptime}
-👥 *Users* » ${totalreg}
-🧩 *Cmds* » ${totalCmds}
+      let pp = './src/foto.jpg'
 
-≡ LISTA DE MENUS
+      await conn.replyWithPhoto(
+        { source: pp },
+        {
+          caption: caption,
+          reply_markup: {
+            inline_keyboard: [
+              [
+                { text: "✿ Información", callback_data: "menu_info" },
+                { text: "✿ Buscadores", callback_data: "menu_search" }
+              ],
+              [
+                { text: "✿ Descargas", callback_data: "menu_dl" },
+                { text: "✿ Anime", callback_data: "menu_anime" }
+              ],
+              [
+                { text: "✿ Gacha", callback_data: "menu_gacha" },
+                { text: "✿ Grupo", callback_data: "menu_group" }
+              ],
+              [
+                { text: "✿ RPG", callback_data: "menu_rpg" },
+                { text: "✿ Tools", callback_data: "menu_tools" }
+              ],
+              [
+                { text: "✿ NSFW", callback_data: "menu_nsfw" },
+                { text: "✿ Owner", callback_data: "menu_owner" }
+              ],
+              [
+                { text: "✿ Owner", url: "https://t.me/tuusuario" }
+              ]
+            ]
+          }
+        }
+      )
 
-💖 *HERRAMIENTAS*
-🌈 ping
-🌈 autoadmin
-🌈 demote
-🌈 leave
-🌈 tag
-🌈 invocar
-🌈 logotipo
-🌈 setbanner
-🌈 setcurrency
-🌈 setname
-🌈 setprimary
-🌈 bots
-🌈 reload
-🌈 setprefijo
-🌈 quitarpref
-🌈 update
-🌈 kick
-🌈 antilink
-🌈 del
-🌈 join
-🌈 reg
-🌈 creador
-🌈 repo
-🌈 link
-🌈 sticker
-🌈 emojimix
-🌈 letra
-
-💖 *DIVERSIÓN*
-🌈 doxear
-🌈 facto
-🌈 piropo
-🌈 reto
-🌈 top
-🌈 iqtest
-🌈 gey
-
-💖 *ANIME*
-🌈 bath
-🌈 bite
-🌈 blush
-🌈 bored
-🌈 buenas-noches
-🌈 buenos-dias
-🌈 cry
-🌈 dance
-🌈 fumar
-🌈 hug
-🌈 kiss
-🌈 pensar
-🌈 sacred
-🌈 slap
-🌈 sleep
-
-💖 *INTELIGENCIA ARTIFICIAL*
-🌈 claude
-🌈 gemini
-🌈 GPT
-🌈 copilot
-🌈 flux
-
-💖 *STALK*
-🌈 github
-🌈 instagram
-🌈 tiktok
-
-💖 *DESCARGAS*
-🌈 play
-🌈 play2
-🌈 tiktoksearch
-🌈 ig
-🌈 APK
-🌈 pin
-🌈 fb
-🌈 mediafire
-
-💖 *RPG*
-🌈 cazar
-🌈 contratos
-🌈 aceptar
-🌈 completar
-🌈 perfil
-🌈 diario
-🌈 minar
-🌈 transferir
-🌈 taller
-🌈 comprar
-🌈 comprar.boy
-🌈 item
-🌈 vender
-🌈 duelo
-🌈 hack
-🌈 best
-🌈 estadisticas
-🌈 inventario
-
-💖 *ECONOMÍA*
-🌈 trabajar
-🌈 balance
-🌈 pay
-🌈 rob
-🌈 deposit
-🌈 withdraw
-⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
-
-    let pp = './src/foto.jpg'
-    await conn.replyWithPhoto(
-      { source: pp },
-      { caption: text }
-    )
+    } catch (e) {
+      console.error('Error en menu:', e)
+      await ctx.reply('❌ Error al mostrar el menú')
+    }
   }
 }
 
