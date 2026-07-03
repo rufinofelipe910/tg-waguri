@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 export default {
 
   help: ["menu"],
@@ -126,10 +128,8 @@ export default {
 🌈 ${usedPrefix}withdraw
 ⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
-      let menuImage = 'https://cdn.dev-ander.xyz/a/SV0S.jpg'
-
       await conn.replyWithPhoto(
-        { url: menuImage },
+        { source: fs.createReadStream('./src/foto.jpg') },
         { caption: text }
       )
 
