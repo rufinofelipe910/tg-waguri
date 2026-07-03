@@ -10,18 +10,17 @@ export default {
       let totalCmds = 58
       const uptime  = clockString(process.uptime() * 1000)
 
-      let text = `
-✿°•  𝗪𝗔𝗚𝗨𝗥𝗜 𝗕𝗢𝗧  •°✿
+      let text = `✿°•  𝗪𝗔𝗚𝗨𝗥𝗜 𝗕𝗢𝗧  •°✿
 ⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑
 🌸 ¡Hola @${ctx.from.username || ctx.from.first_name || "Usuario"}! ⸜(｡˃ᵕ˂)⸝♡
 ⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑
-⏱️ *Uptime* » ${uptime}
-👥 *Users* » ${totalreg}
-🧩 *Cmds* » ${totalCmds}
+⏱️ Uptime » ${uptime}
+👥 Users » ${totalreg}
+🧩 Cmds » ${totalCmds}
 
 ≡ LISTA DE MENUS
 
-💖 *HERRAMIENTAS*
+💖 HERRAMIENTAS
 🌈 ${usedPrefix}ping
 🌈 ${usedPrefix}autoadmin
 🌈 ${usedPrefix}demote
@@ -50,7 +49,7 @@ export default {
 🌈 ${usedPrefix}emojimix
 🌈 ${usedPrefix}letra
 
-💖 *DIVERSIÓN*
+💖 DIVERSIÓN
 🌈 ${usedPrefix}doxear
 🌈 ${usedPrefix}facto
 🌈 ${usedPrefix}piropo
@@ -59,7 +58,7 @@ export default {
 🌈 ${usedPrefix}iqtest
 🌈 ${usedPrefix}gey
 
-💖 *ANIME*
+💖 ANIME
 🌈 ${usedPrefix}bath
 🌈 ${usedPrefix}bite
 🌈 ${usedPrefix}blush
@@ -76,19 +75,19 @@ export default {
 🌈 ${usedPrefix}slap
 🌈 ${usedPrefix}sleep
 
-💖 *INTELIGENCIA ARTIFICIAL*
+💖 INTELIGENCIA ARTIFICIAL
 🌈 ${usedPrefix}claude
 🌈 ${usedPrefix}gemini
 🌈 ${usedPrefix}GPT
 🌈 ${usedPrefix}copilot
 🌈 ${usedPrefix}flux
 
-💖 *STALK*
+💖 STALK
 🌈 ${usedPrefix}github
 🌈 ${usedPrefix}instagram
 🌈 ${usedPrefix}tiktok
 
-💖 *DESCARGAS*
+💖 DESCARGAS
 🌈 ${usedPrefix}play
 🌈 ${usedPrefix}play2
 🌈 ${usedPrefix}tiktoksearch
@@ -98,7 +97,7 @@ export default {
 🌈 ${usedPrefix}fb
 🌈 ${usedPrefix}mediafire
 
-💖 *RPG*
+💖 RPG
 🌈 ${usedPrefix}cazar
 🌈 ${usedPrefix}contratos
 🌈 ${usedPrefix}aceptar
@@ -118,7 +117,7 @@ export default {
 🌈 ${usedPrefix}estadisticas
 🌈 ${usedPrefix}inventario
 
-💖 *ECONOMÍA*
+💖 ECONOMÍA
 🌈 ${usedPrefix}trabajar
 🌈 ${usedPrefix}balance
 🌈 ${usedPrefix}pay
@@ -127,15 +126,19 @@ export default {
 🌈 ${usedPrefix}withdraw
 ⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
-      let pp = './src/foto.jpg'
-      await conn.replyWithPhoto(
-        { source: pp },
-        { caption: text }
-      )
+      try {
+        let pp = './src/foto.jpg'
+        await conn.replyWithPhoto(
+          { source: pp },
+          { caption: text }
+        )
+      } catch (photoErr) {
+        await ctx.reply(text)
+      }
 
     } catch (e) {
       console.error('Error en menu:', e)
-      await ctx.reply('❌ Error al mostrar el menú')
+      await ctx.reply('Error en el menu: ' + e.message)
     }
   }
 }
