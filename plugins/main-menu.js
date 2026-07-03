@@ -6,33 +6,8 @@ export default {
 
   run: async (ctx, { conn, usedPrefix }) => {
 
-    let tags = {
-      main: 'HERRAMIENTAS',
-      fun: 'DIVERSIÓN',
-      anime: 'ANIME',
-      ai: 'INTELIGENCIA ARTIFICIAL',
-      stalk: 'STALK',
-      dl: 'DESCARGAS',
-      rpg: 'RPG',
-      economy: 'ECONOMÍA'
-    }
-
-    let plugins = Object.values(global.plugins)
-
-    let categorias = {}
-
-    for (let plugin of plugins) {
-      if (!plugin.help || !plugin.tags) continue
-      for (let tag of plugin.tags) {
-        if (!categorias[tag]) categorias[tag] = []
-        for (let help of plugin.help) {
-          categorias[tag].push(help)
-        }
-      }
-    }
-
     let totalreg  = Object.keys(global.db?.data?.users || {}).length
-    let totalCmds = plugins.filter((v) => v.help && v.tags).length
+    let totalCmds = 58
     const uptime  = clockString(process.uptime() * 1000)
 
     let text = `
@@ -45,17 +20,112 @@ export default {
 🧩 *Cmds* » ${totalCmds}
 
 ≡ LISTA DE MENUS
-`
 
-    for (let tag in tags) {
-      if (!categorias[tag]) continue
-      text += `\n💖 *${tags[tag]}*\n`
-      for (let cmd of categorias[tag]) {
-        text += `🌈 ${usedPrefix}${cmd}\n`
-      }
-    }
+💖 *HERRAMIENTAS*
+🌈 ping
+🌈 autoadmin
+🌈 demote
+🌈 leave
+🌈 tag
+🌈 invocar
+🌈 logotipo
+🌈 setbanner
+🌈 setcurrency
+🌈 setname
+🌈 setprimary
+🌈 bots
+🌈 reload
+🌈 setprefijo
+🌈 quitarpref
+🌈 update
+🌈 kick
+🌈 antilink
+🌈 del
+🌈 join
+🌈 reg
+🌈 creador
+🌈 repo
+🌈 link
+🌈 sticker
+🌈 emojimix
+🌈 letra
 
-    text += `\n⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
+💖 *DIVERSIÓN*
+🌈 doxear
+🌈 facto
+🌈 piropo
+🌈 reto
+🌈 top
+🌈 iqtest
+🌈 gey
+
+💖 *ANIME*
+🌈 bath
+🌈 bite
+🌈 blush
+🌈 bored
+🌈 buenas-noches
+🌈 buenos-dias
+🌈 cry
+🌈 dance
+🌈 fumar
+🌈 hug
+🌈 kiss
+🌈 pensar
+🌈 sacred
+🌈 slap
+🌈 sleep
+
+💖 *INTELIGENCIA ARTIFICIAL*
+🌈 claude
+🌈 gemini
+🌈 GPT
+🌈 copilot
+🌈 flux
+
+💖 *STALK*
+🌈 github
+🌈 instagram
+🌈 tiktok
+
+💖 *DESCARGAS*
+🌈 play
+🌈 play2
+🌈 tiktoksearch
+🌈 ig
+🌈 APK
+🌈 pin
+🌈 fb
+🌈 mediafire
+
+💖 *RPG*
+🌈 cazar
+🌈 contratos
+🌈 aceptar
+🌈 completar
+🌈 perfil
+🌈 diario
+🌈 minar
+🌈 transferir
+🌈 taller
+🌈 comprar
+🌈 comprar.boy
+🌈 item
+🌈 vender
+🌈 duelo
+🌈 hack
+🌈 best
+🌈 estadisticas
+🌈 inventario
+
+💖 *ECONOMÍA*
+🌈 trabajar
+🌈 balance
+🌈 pay
+🌈 rob
+🌈 deposit
+🌈 withdraw
+⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑⌑`
 
     let pp = './src/foto.jpg'
     await conn.replyWithPhoto(
