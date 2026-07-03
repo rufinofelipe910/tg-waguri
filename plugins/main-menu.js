@@ -1,10 +1,12 @@
+import fs from 'fs'
+
 export default {
 
   help: ["menu"],
   tags: ["main"],
   command: ["menu", "waguri", "help", "menucompleto", "comandos", "helpcompleto", "allmenu"],
 
-  run: async (ctx, { conn }) => {
+  run: async (ctx, { conn, usedPrefix }) => {
     try {
       let username = ctx.from?.username || ctx.from?.first_name || "Usuario"
       let hora = new Date().getHours()
@@ -12,10 +14,8 @@ export default {
 
       let caption = `✨ MENÚ PRINCIPAL\n\n🌅 ${saludo} ${username} 👑\n\nSelecciona una categoría.`
 
-      let pp = './src/foto.jpg'
-
-      await conn.replyWithPhoto(
-        { source: pp },
+      await ctx.replyWithPhoto(
+        { source: fs.createReadStream('./src/foto.jpg') },
         {
           caption: caption,
           reply_markup: {
