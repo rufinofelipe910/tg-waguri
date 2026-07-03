@@ -157,7 +157,7 @@ if (plugin.command.includes(command)) {
 try {
 
 await plugin.run(ctx, {
-conn: ctx,
+conn: bot,
 args,
 command,
 text: args.join(" "),
@@ -224,7 +224,7 @@ if (!plugin || !plugin.run) continue
 if (plugin.command && plugin.command.includes(data)) {
   try {
     await plugin.run(ctx, {
-      conn: ctx,
+      conn: bot,
       args: [],
       command: data,
       text: "",
