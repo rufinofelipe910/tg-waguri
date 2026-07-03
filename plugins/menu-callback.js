@@ -2,12 +2,23 @@ export default {
 
   help: [],
   tags: ["main"],
-  command: [],
+  command: [
+    "menu_tools",
+    "menu_fun", 
+    "menu_anime",
+    "menu_ai",
+    "menu_stalk",
+    "menu_dl",
+    "menu_rpg",
+    "menu_economy",
+    "menu_back"
+  ],
 
   run: async (ctx, { conn, usedPrefix }) => {
-    if (!ctx.callbackQuery) return
+    
+    let data = ctx.callbackQuery?.data
 
-    let data = ctx.callbackQuery.data
+    if (!data) return
 
     let menus = {
       menu_tools: `✨ HERRAMIENTAS
@@ -89,7 +100,6 @@ export default {
 🌈 ${usedPrefix}tiktoksearch
 🌈 ${usedPrefix}ig
 🌈 ${usedPrefix}APK
-🌈 ${Prefix}APK
 🌈 ${usedPrefix}pin
 🌈 ${usedPrefix}fb
 🌈 ${usedPrefix}mediafire`,
@@ -133,6 +143,7 @@ export default {
           ]
         }
       })
+      return
     }
 
     if (data === "menu_back") {
@@ -165,7 +176,5 @@ export default {
         }
       })
     }
-
-    await ctx.answerCbQuery()
   }
 }
