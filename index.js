@@ -211,7 +211,16 @@ let data = ctx.callbackQuery?.data
 
 console.log("🔘 BOTÓN PRESIONADO →", data)
 
-await ctx.answerCbQuery()
+// answerCbQuery separado en su propio try/catch:
+// si esto falla (ej. "query is too old"), NO debe frenar
+// la ejecución del plugin que sigue abajo.
+try {
+  await ctx.answerCbQuery()
+} catch (e) {
+  console.log(chalk.red("⚠️ answerCbQuery falló →"), e.message)
+}
+
+if (!data) return
 
 // Ejecutar plugins que manejen este callback
 for (let name in global.plugins) {
@@ -238,6 +247,8 @@ if (plugin.command && plugin.command.includes(data)) {
 }
 
 }
+
+console.log(chalk.yellow("⚠ Ningún plugin manejó el callback →"), data)
 
 })
 
