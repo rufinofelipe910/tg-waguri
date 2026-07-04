@@ -1,10 +1,12 @@
+import fs from 'fs'
+
 export default {
 
   help: [],
   tags: ["main"],
   command: [
     "menu_tools",
-    "menu_fun", 
+    "menu_fun",
     "menu_anime",
     "menu_ai",
     "menu_stalk",
@@ -15,7 +17,7 @@ export default {
   ],
 
   run: async (ctx, { conn, usedPrefix }) => {
-    
+
     let data = ctx.callbackQuery?.data
 
     if (!data) return
@@ -135,8 +137,10 @@ export default {
 🌈 ${usedPrefix}withdraw`
     }
 
+    // MENÚ DE CATEGORÍA → en vez de editar, mandamos mensaje nuevo
     if (menus[data]) {
-      await ctx.editMessageCaption(menus[data], {
+      await ctx.telegram.sendChatAction(ctx.chat.id, 'typing')
+      await ctx.reply(menus[data], {
         reply_markup: {
           inline_keyboard: [
             [{ text: "⬅️ Volver al Menú", callback_data: "menu_back" }]
@@ -146,6 +150,7 @@ export default {
       return
     }
 
+    // VOLVER AL MENÚ PRINCIPAL → también mensaje nuevo
     if (data === "menu_back") {
       let username = ctx.from?.username || ctx.from?.first_name || "Usuario"
       let hora = new Date().getHours()
@@ -153,28 +158,32 @@ export default {
 
       let caption = `✨ MENÚ PRINCIPAL\n\n🌅 ${saludo} ${username} 👑\n\nSelecciona una categoría.`
 
-      await ctx.editMessageCaption(caption, {
-        reply_markup: {
-          inline_keyboard: [
-            [
-              { text: "✿ Herramientas", callback_data: "menu_tools" },
-              { text: "✿ Diversión", callback_data: "menu_fun" }
-            ],
-            [
-              { text: "✿ Anime", callback_data: "menu_anime" },
-              { text: "✿ IA", callback_data: "menu_ai" }
-            ],
-            [
-              { text: "✿ Stalk", callback_data: "menu_stalk" },
-              { text: "✿ Descargas", callback_data: "menu_dl" }
-            ],
-            [
-              { text: "✿ RPG", callback_data: "menu_rpg" },
-              { text: "✿ Economía", callback_data: "menu_economy" }
+      await ctx.replyWithPhoto(
+        { source: fs.createReadStream('./src/foto.jpg') },
+        {
+          caption: caption,
+          reply_markup: {
+            inline_keyboard: [
+              [
+                { text: "✿ Herramientas", callback_data: "menu_tools" },
+                { text: "✿ Diversión", callback_data: "menu_fun" }
+              ],
+              [
+                { text: "✿ Anime", callback_data: "menu_anime" },
+                { text: "✿ IA", callback_data: "menu_ai" }
+              ],
+              [
+                { text: "✿ Stalk", callback_data: "menu_stalk" },
+                { text: "✿ Descargas", callback_data: "menu_dl" }
+              ],
+              [
+                { text: "✿ RPG", callback_data: "menu_rpg" },
+                { text: "✿ Economía", callback_data: "menu_economy" }
+              ]
             ]
-          ]
+          }
         }
-      })
+      )
     }
   }
 }
